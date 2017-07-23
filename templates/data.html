@@ -1,0 +1,111 @@
+
+
+
+
+<!DOCTYPE html> 
+<html> 
+<head>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js "></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
+
+
+<title>P&G Customer Complaint Analysis</title> 
+
+
+
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+</head>
+<body>
+<h3 style="text-align: center; margin-bottom: 50px;">Production Quality Analysis Based On Customer Complaints</h3>
+<div class ="row">
+  <div class="col s6" style="margin-top: 140px">
+
+    
+    <div class="row">
+    <form class="col s12">
+      <div class="row">
+        <div class="input-field col s12">
+          <textarea id="dateThing" class="materialize-textarea"></textarea>
+          <label for="textarea1">Date of Complaint</label>
+        </div>
+      </div>
+    </form>
+
+        <form class="col s12">
+          <div class="row">
+            <div class="input-field col s12">
+              <textarea id="textarea1" class="materialize-textarea"></textarea>
+              <label for="textarea1">Complaint Summary</label>
+            </div>
+          </div>
+        </form>
+    </div>
+    <form class="col s6">
+      <div class="row">
+        <div class="input-field col s12">
+          <textarea id="prodCode" class="materialize-textarea"></textarea>
+          <label for="textarea1">Production Code</label>
+        </div>
+      </div>
+    </form>
+    <div class="input-field col s6">
+    <select>
+      <option value="" disabled selected>Choose your option</option>
+      <option value="1">Smell</option>
+      <option value="2">Suds</option>
+      <option value="3">Residue</option>
+      <option value="4">Feel</option>
+      <option value="5">Color</option>
+      <option value="6">Packaging</option>
+      <option value="7">Performance</option>
+      <option value="8">Other</option>
+    </select>
+    <label>L3 Class</label>
+  </div>
+  		<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" onclick ="submit()">
+		  Submit
+		</button>
+
+
+  </div>
+  <div class="col s6">
+    {% autoescape off %}{{table}}{% endautoescape %}
+  </div>
+</div>
+
+ <script>
+ function submit() {
+ 	$.ajax({
+
+                 type:"POST",
+                 url:"/input/",
+                 data: {
+                 		'date': $("#dateThing").val(),
+                    'prodCode': $("#prodCode").val()
+                        },    
+                 
+				success: function(){
+
+						window.location.replace("/new_data/")
+				}
+				})
+ }
+
+     
+
+     $(document).ready(function() {
+    $('select').material_select();
+  });
+
+ </script>
+</body>
+</html>
+

@@ -1,0 +1,82 @@
+<!DOCTYPE html> 
+<html> 
+<head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js "></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
+
+
+<title>P&G Customer Complaint Analysis</title> 
+
+
+
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+</head>
+<body>
+
+<div class ="row">
+  <div class="col s6" style="margin-top: 200px">
+
+    
+    <div class="row">
+    <div class="col s12">
+        <input type="text" class="datepicker" placeholder="Date of Complaint">
+    </div>
+        <form class="col s12">
+          <div class="row">
+            <div class="input-field col s12">
+              <textarea id="textarea1" class="materialize-textarea"></textarea>
+              <label for="textarea1">Complaint Summary</label>
+            </div>
+          </div>
+        </form>
+    </div>
+    <div class="input-field col s6">
+          <input id="first_name" type="text">
+          <label for="first_name">Production ID (optional)</label>
+    </div>
+    <div class="input-field col s6">
+    <select>
+      <option value="" disabled selected>Choose your option</option>
+      <option value="1">Smell</option>
+      <option value="2">Suds</option>
+      <option value="3">Residue</option>
+      <option value="4">Feel</option>
+      <option value="5">Color</option>
+      <option value="6">Packaging</option>
+      <option value="7">Performance</option>
+      <option value="8">Other</option>
+    </select>
+    <label>L3 Class</label>
+  </div>
+
+
+  </div>
+  <div class="col s6">
+    {% autoescape on %}{{table}}{% endautoescape %}
+  </div>
+</div>
+
+ <script>
+     $('.datepicker').pickadate({
+    selectMonths: true, // Creates a dropdown to control month
+    selectYears: 15, // Creates a dropdown of 15 years to control year,
+    today: 'Today',
+    clear: 'Clear',
+    close: 'Ok',
+    closeOnSelect: false // Close upon selecting a date,
+  });
+
+     $(document).ready(function() {
+    $('select').material_select();
+  });
+
+ </script>
+</body>
+</html>
+
